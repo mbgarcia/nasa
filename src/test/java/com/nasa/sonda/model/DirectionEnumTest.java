@@ -13,5 +13,14 @@ public class DirectionEnumTest {
 		
 		assertEquals(DirectionEnum.WEST, actual);
 	}
+	
+	@Test
+	public void whenDirectionIsSouthAndTurnRight() {
+		DirectionEnum origin = DirectionEnum.NORTH;
+		DirectionEnum actual = origin.right();
+		
+		assertEquals(DirectionEnum.EAST, actual);
+	}
+	
 }
 
