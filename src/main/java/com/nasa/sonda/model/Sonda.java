@@ -17,20 +17,8 @@ public class Sonda {
 	}
 
 	public void move() {
-		switch (direction) {
-			case NORTH:
-				position.setY(position.getY() + 1);
-				break;
-			case SOUTH:
-				position.setY(position.getY() - 1);
-				break;
-			case WEST:
-				position.setX(position.getX() - 1);
-				break;
-			case EAST:
-				position.setX(position.getX() + 1);
-				break;
-		}
+		position.setX(direction.movingX() + position.getX());
+		position.setY(direction.movingY() + position.getY());
 	}
 
 }
