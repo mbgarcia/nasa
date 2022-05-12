@@ -12,6 +12,9 @@ public class SondaService {
 			else if (c == 'R') {
 				sonda.updateDirection(sonda.getDirection().right());
 			}
+			else if (c == 'M') {
+				sonda.move();
+			}
 		});
 		return sonda;
 	}
