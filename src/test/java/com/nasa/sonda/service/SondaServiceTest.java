@@ -7,8 +7,10 @@ import org.junit.jupiter.api.Test;
 import com.nasa.sonda.model.DirectionEnum;
 import com.nasa.sonda.model.Position;
 import com.nasa.sonda.model.Sonda;
+import com.nasa.sonda.model.Terrain;
 
 public class SondaServiceTest {
+	private Terrain terrain = new Terrain(5, 5);
 	
 	@Test
 	public void movingSondaWhenDirectionIsNorthAndTurnLeft() {
@@ -17,6 +19,7 @@ public class SondaServiceTest {
 		Sonda sonda = new Sonda();
 		sonda.setDirection(DirectionEnum.NORTH);
 		sonda.setPosition(new Position(1, 2));
+		sonda.setTerrain(terrain);
 		
 		sonda = service.executeMoves(sonda, "LM");
 		
@@ -33,6 +36,7 @@ public class SondaServiceTest {
 		Sonda sonda = new Sonda();
 		sonda.setDirection(DirectionEnum.NORTH);
 		sonda.setPosition(new Position(1, 2));
+		sonda.setTerrain(terrain);
 		
 		sonda = service.executeMoves(sonda, "LMLMLMLMM");
 		

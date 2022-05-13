@@ -11,14 +11,28 @@ public class Sonda {
 	private Position position;
 	
 	private DirectionEnum direction;
+	
+	private Terrain terrain;
 
 	public void updateDirection(DirectionEnum newDirection) {
 		this.direction = newDirection;
 	}
 
 	public void move() {
-		position.setX(direction.movingX() + position.getX());
-		position.setY(direction.movingY() + position.getY());
+		int x = direction.movingX() + position.getX();
+		
+		if (x > terrain.getLimitX() || x < 0) {
+			x = position.getX();
+		}
+		
+		int y = direction.movingY() + position.getY();
+		
+		if (y > terrain.getLimitY() || x < 0) {
+			y = position.getY();
+		}
+
+		position.setX(x);
+		position.setY(y);
 	}
 
 }
