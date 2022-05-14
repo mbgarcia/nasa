@@ -29,6 +29,8 @@ public class SondaService {
 			resultadoExploracao.add(sonda.getFinalPosition());
 		}
 		
+		log.info("Mission completed with success.");
+		
 		return resultadoExploracao;
 	}
 
