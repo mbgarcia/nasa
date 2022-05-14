@@ -22,5 +22,14 @@ public class DirectionEnumTest {
 		assertEquals(DirectionEnum.EAST, actual);
 	}
 	
+	@Test
+	public void parserSymbol() {
+		assertEquals(DirectionEnum.NORTH, DirectionEnum.valueOfSymbol('N'));
+		assertEquals(DirectionEnum.SOUTH, DirectionEnum.valueOfSymbol('S'));
+		assertEquals(DirectionEnum.WEST, DirectionEnum.valueOfSymbol('W'));
+		assertEquals(DirectionEnum.EAST, DirectionEnum.valueOfSymbol('E'));
+		
+	}
+	
 }
 

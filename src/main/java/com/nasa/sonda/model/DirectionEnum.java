@@ -1,7 +1,7 @@
 package com.nasa.sonda.model;
 
 public enum DirectionEnum {
-	NORTH {
+	NORTH('N') {
 		@Override
 		public DirectionEnum left() {
 			return WEST;
@@ -23,7 +23,7 @@ public enum DirectionEnum {
 		}
 	}, 
 	
-	WEST {
+	WEST('W') {
 		@Override
 		public DirectionEnum left() {
 			return SOUTH;
@@ -45,7 +45,7 @@ public enum DirectionEnum {
 		}
 	},
 	
-	SOUTH {
+	SOUTH('S') {
 		@Override
 		public DirectionEnum left() {
 			return EAST;
@@ -67,7 +67,7 @@ public enum DirectionEnum {
 		}
 	},
 	
-	EAST {
+	EAST('E') {
 		@Override
 		public DirectionEnum left() {
 			return NORTH;
@@ -88,6 +88,22 @@ public enum DirectionEnum {
 			return 0;
 		}
 	};
+	
+	private char symbol = 0;
+
+	DirectionEnum(char symbol) {
+		this.symbol = symbol;
+	}
+	
+	public static DirectionEnum valueOfSymbol(char symbol) {
+		for (DirectionEnum e: DirectionEnum.values()) {
+			if (e.symbol == symbol) {
+				return e;
+			}
+		}
+		
+		return null;
+	}
 
 	public abstract DirectionEnum left();
 
@@ -96,4 +112,8 @@ public enum DirectionEnum {
 	public abstract int movingX();
 	
 	public abstract int movingY();
+
+	public char getSymbol() {
+		return symbol;
+	}
 }

@@ -14,14 +14,13 @@ public class SondaServiceTest {
 	
 	@Test
 	public void movingSondaWhenDirectionIsNorthAndTurnLeft() {
-		SondaService service = new SondaService();
-		
 		Sonda sonda = new Sonda();
 		sonda.setDirection(DirectionEnum.NORTH);
 		sonda.setPosition(new Position(1, 2));
 		sonda.setTerrain(terrain);
+		sonda.setCommands("LM");
 		
-		sonda = service.executeMoves(sonda, "LM");
+		sonda.executeMoves();
 		
 		assertEquals(sonda.getDirection(), DirectionEnum.WEST);
 		assertEquals(sonda.getDirection(), DirectionEnum.WEST);
@@ -31,18 +30,34 @@ public class SondaServiceTest {
 	
 	@Test
 	public void movingSondaWhenDirectionIsNorthAndMultipleMoves() {
-		SondaService service = new SondaService();
 		
 		Sonda sonda = new Sonda();
 		sonda.setDirection(DirectionEnum.NORTH);
 		sonda.setPosition(new Position(1, 2));
 		sonda.setTerrain(terrain);
+		sonda.setCommands("LMLMLMLMM");
 		
-		sonda = service.executeMoves(sonda, "LMLMLMLMM");
+		sonda.executeMoves();
 		
 		assertEquals(sonda.getDirection(), DirectionEnum.NORTH);
 		assertEquals(1, sonda.getPosition().getX());
 		assertEquals(3, sonda.getPosition().getY());
+	}
+	
+	@Test
+	public void anotherMovingSondaWhenDirectionIsNorthAndMultipleMoves() {
+		
+		Sonda sonda = new Sonda();
+		sonda.setDirection(DirectionEnum.EAST);
+		sonda.setPosition(new Position(3, 3));
+		sonda.setTerrain(terrain);
+		sonda.setCommands("MMRMMRMRRM");
+		
+		sonda.executeMoves();
+		
+		assertEquals(sonda.getDirection(), DirectionEnum.EAST);
+		assertEquals(5, sonda.getPosition().getX());
+		assertEquals(1, sonda.getPosition().getY());
 	}
 	
 }
