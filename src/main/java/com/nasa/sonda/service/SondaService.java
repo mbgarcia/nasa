@@ -24,12 +24,19 @@ public class SondaService {
 		List<String> resultadoExploracao = new ArrayList<>();
 		
 		log.info("Starting sonda explorer.");
+		
 		for (Sonda sonda: sondas) {
 			sonda.executeMoves();
 			resultadoExploracao.add(sonda.getFinalPosition());
 		}
 		
-		log.info("Mission completed with success.");
+		if (sondas.size() == 0) {
+			log.info("All sondas were rejected.");
+			
+			resultadoExploracao.add("All sondas were rejected.");
+		}
+		
+		log.info("Mission completed.");
 		
 		return resultadoExploracao;
 	}
@@ -49,7 +56,9 @@ public class SondaService {
 					var sonda = new Sonda(line);
 					sonda.setTerrain(terrain);
 					sonda.setCommands(br.readLine());
-					sondas.add(sonda);
+					if (sonda.isValid()) {
+						sondas.add(sonda);
+					}
 				}
 			}
 		} catch (Exception e) {

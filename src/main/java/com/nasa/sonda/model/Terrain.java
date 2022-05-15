@@ -1,5 +1,7 @@
 package com.nasa.sonda.model;
 
+import org.apache.commons.lang3.StringUtils;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -11,7 +13,15 @@ public class Terrain {
 	private int limitY;
 	
 	public Terrain(String header) {
-		this.limitX = header.charAt(0);
-		this.limitY = header.charAt(2);
+		if (header.split(" ").length != 2) {
+			throw new RuntimeException("invalid.header.file");
+		}
+		
+		if (!StringUtils.isNumericSpace(header)) {
+			throw new RuntimeException("invalid.header.file");
+		}
+
+		this.limitX = Integer.parseInt(header.split(" ")[0]);
+		this.limitY = Integer.parseInt(header.split(" ")[1]);
 	}
 }

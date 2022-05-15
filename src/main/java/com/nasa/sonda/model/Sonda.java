@@ -1,5 +1,9 @@
 package com.nasa.sonda.model;
 
+import java.util.regex.Pattern;
+
+import org.apache.commons.lang3.StringUtils;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,8 +21,15 @@ public class Sonda {
 	private String commands;
 
 	public Sonda(String line) {
-		this.position = new Position(Character.getNumericValue(line.charAt(0)), Character.getNumericValue(line.charAt(2)));
-		this.direction = DirectionEnum.valueOfSymbol(line.charAt(4));
+		if (line != null && line.split(" ").length == 3) {
+			String[] parts = line.split(" ");
+			
+			if (StringUtils.isNumeric(parts[0]) && StringUtils.isNumeric(parts[1]) ) {
+				this.position = new Position(Integer.parseInt(parts[0]), Integer.parseInt(parts[1]));
+			}
+			
+			this.direction = DirectionEnum.valueOfSymbol(parts[2].charAt(0));
+		}
 	}
 	
 	public Sonda(Position position, DirectionEnum direction, Terrain terrain) {
@@ -64,5 +75,9 @@ public class Sonda {
 
 	public String getFinalPosition() {
 		return String.format("%s %s %s", this.position.getX(), this.position.getY(), this.direction.getSymbol());
+	}
+
+	public boolean isValid() {
+		return this.position != null && this.direction != null && Pattern.matches("[LRM]+", this.commands);
 	}
 }
