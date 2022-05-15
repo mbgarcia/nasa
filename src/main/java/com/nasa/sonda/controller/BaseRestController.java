@@ -11,8 +11,9 @@ import org.springframework.http.ResponseEntity;
 
 import com.nasa.sonda.report.PlainTextReportBuilder;
 
-public class BaseRestController {
 
+
+public class BaseRestController {
 	protected ResponseEntity<?> exportarArquivo(PlainTextReportBuilder builder) {
 		byte[] excel = builder.exportarArquivo();
 		
@@ -30,6 +31,4 @@ public class BaseRestController {
 
 		return new ResponseEntity<InputStreamResource> (inputStreamResource, responseHeaders, HttpStatus.OK);
 	}
-	
-	
 }

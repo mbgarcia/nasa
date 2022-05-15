@@ -2,6 +2,8 @@ package com.nasa.sonda.model;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.nasa.sonda.exceptions.BusinessException;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -12,13 +14,13 @@ public class Terrain {
 	
 	private int limitY;
 	
-	public Terrain(String header) {
+	public Terrain(String header) throws BusinessException {
 		if (header.split(" ").length != 2) {
-			throw new RuntimeException("invalid.header.file");
+			throw new BusinessException("invalid.header.file");
 		}
 		
 		if (!StringUtils.isNumericSpace(header)) {
-			throw new RuntimeException("invalid.header.file");
+			throw new BusinessException("invalid.header.file");
 		}
 
 		this.limitX = Integer.parseInt(header.split(" ")[0]);

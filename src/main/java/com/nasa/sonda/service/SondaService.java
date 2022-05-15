@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.nasa.sonda.exceptions.BusinessException;
 import com.nasa.sonda.model.Sonda;
 import com.nasa.sonda.model.Terrain;
 
@@ -29,7 +30,7 @@ public class SondaService {
 			sonda.executeMoves();
 			resultadoExploracao.add(sonda.getFinalPosition());
 		}
-		
+
 		if (sondas.size() == 0) {
 			log.info("All sondas were rejected.");
 			
@@ -61,12 +62,16 @@ public class SondaService {
 					}
 				}
 			}
-		} catch (Exception e) {
+		}
+		catch (BusinessException e) {
+			throw e;
+		}		
+		catch (Exception e) {
 			log.error("ERROR ON IMPORTING SONDA FILE", e);
 			throw new Exception(e);
 		}
 		
-		log.info("Everything is fine with sondas. :-)");
+		log.info("Sonda file read completed.)");
 		
 		return sondas;
 	}

@@ -14,7 +14,7 @@ import com.nasa.sonda.service.SondaService;
 
 @RestController
 @RequestMapping("/sondas")
-public class SondaController extends BaseRestController{
+public class SondaController extends BaseRestController {
 	
 	@Autowired
 	private SondaService sondaService;
