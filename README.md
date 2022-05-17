@@ -38,21 +38,21 @@ Saída esperada:
 
 ## Build the project
 
-We can generate a package with Maven:
+Um pacote do projeto pode ser construído usando o Maven:
 
 ```
 mvn clean package
 ```
 
-And run standalone:
+E para executar em modo local:
 
 ```
 java -jar target/nasa-0.0.1.jar
 ```
 
-## Docker running
+## Configuração em Docker
 
-The project contains a Dockerfile that uses an base image from openjdk alpine project:
+O projeto contém um arquivo Dockerfile baseado em uma imagem openjdk do projeto Alpine:
 
 ```
 FROM openjdk:13-alpine
@@ -61,15 +61,21 @@ COPY target/nasa-0.0.1.jar nasa-0.0.1.jar
 ENTRYPOINT ["java","-jar","/nasa-0.0.1.jar"]
 ```
 
-To create an image from our Dockerfile, we have to run 'docker build':
+Para criar a imagem do nosso projeto, a partir do Dockerfile, usamos o comando 'docker build':
 
 ```
 $ docker build --tag=elo7:latest .
 ```
 
-And we're able to run the container from our image:
+E para subir a aplicação no container após a geração da imagem:
 
 ```
 docker run -p8080:8080 elo7:latest
 ```
+
+## Documentação da API
+
+Para exibir a documentação da API usamos um implementação do OpenAPI, chamada Swagger.
+
+Após subir o projeto, clique aqui [Swagger](http://localhost:8080/swagger-ui.html) para abrir essa documentação.
 
