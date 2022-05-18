@@ -96,11 +96,13 @@ movimentos de Sn
 
 ```
 onde:
+```
 lxT: limite do terreno no eixo X
 lyT: limite do terreno no eixo Y
 xS: posição inicial da sonda no eixo X
 yS: posição inicial da sonda no eixo Y
 dS: direção da sonda (N, S, W, E)
 movimentos: lista de movimentos possíveis da sonda in (L, R, M)
+```
 
 A saída gerada é um arquivo contendo as posições finais das sondas.
