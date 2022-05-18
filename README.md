@@ -83,7 +83,7 @@ Após subir o projeto, clique aqui [Swagger](http://localhost:8080/swagger-ui.ht
 
 O input de dados para a sondagem em Marte é através de um arquivo com o seguinte layout:
 ```
-lxT lyT
+wT hT
 xS1 yS1 dS1
 movimentos de S1
 xS2 yS2 dS2
@@ -97,8 +97,8 @@ movimentos de Sn
 ```
 onde:
 ```
-lxT: limite do terreno no eixo X
-lyT: limite do terreno no eixo Y
+wT: limite do terreno no eixo X
+hT: limite do terreno no eixo Y
 xS: posição inicial da sonda no eixo X
 yS: posição inicial da sonda no eixo Y
 dS: direção da sonda (N, S, W, E)
