@@ -79,3 +79,28 @@ Para exibir a documentação da API usamos um implementação do OpenAPI, chamad
 
 Após subir o projeto, clique aqui [Swagger](http://localhost:8080/swagger-ui.html) para abrir essa documentação.
 
+## Execução da sondas
+
+O input de dados para a sondagem em Marte é através de um arquivo com o seguinte layout:
+```
+lxT lyT
+xS1 yS1 dS1
+movimentos de S1
+xS2 yS2 dS2
+movimentos de S2
+.
+.
+.
+xSn ySn dSn
+movimentos de Sn
+
+```
+onde:
+lxT: limite do terreno no eixo X
+lyT: limite do terreno no eixo Y
+xS: posição inicial da sonda no eixo X
+yS: posição inicial da sonda no eixo Y
+dS: direção da sonda (N, S, W, E)
+movimentos: lista de movimentos possíveis da sonda in (L, R, M)
+
+A saída gerada é um arquivo contendo as posições finais das sondas.
